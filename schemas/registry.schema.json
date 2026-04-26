@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "version",
+    "config",
+    "services"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "config": {
+      "type": "object",
+      "required": [
+        "qdrant_url",
+        "ollama_url",
+        "embed_model",
+        "qa_branch"
+      ],
+      "properties": {
+        "qdrant_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "ollama_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "embed_model": {
+          "type": "string"
+        },
+        "embed_dimensions": {
+          "type": "number"
+        },
+        "qa_branch": {
+          "type": "string"
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "repo_slug",
+          "type",
+          "qdrant_namespace",
+          "package_json_name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "repo_slug": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "backend",
+              "frontend",
+              "shared-lib"
+            ]
+          },
+          "primary_framework": {
+            "enum": [
+              "nestjs",
+              "express",
+              "nextjs",
+              "react",
+              "lib",
+              "fastify"
+            ]
+          },
+          "qdrant_namespace": {
+            "type": "string",
+            "pattern": "^qa__"
+          },
+          "package_json_name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

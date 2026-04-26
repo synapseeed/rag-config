@@ -1,0 +1,69 @@
+# Build outputs
+dist/
+build/
+.next/
+.nuxt/
+out/
+coverage/
+storybook-static/
+.turbo/
+
+# Dependencies
+node_modules/
+.pnp/
+.yarn/
+
+# Generated files
+*.d.ts
+*.js.map
+*.min.js
+*.min.css
+**/*.generated.ts
+**/*.generated.js
+**/graphql/generated/**
+**/__generated__/**
+
+# Test files (noisy, not helpful for context retrieval)
+**/*.test.ts
+**/*.test.tsx
+**/*.test.js
+**/*.spec.ts
+**/*.spec.tsx
+**/*.spec.js
+**/__tests__/**
+**/test/fixtures/**
+**/mocks/**
+**/__mocks__/**
+
+# Config files (not code)
+*.config.js
+*.config.ts
+jest.config.*
+webpack.config.*
+vite.config.*
+rollup.config.*
+babel.config.*
+.eslintrc*
+.prettierrc*
+tsconfig*.json
+.env*
+
+# Static assets
+public/
+static/
+assets/
+**/*.svg
+**/*.png
+**/*.jpg
+**/*.ico
+**/*.woff
+**/*.woff2
+
+# CI/CD
+.github/
+.gitlab/
+bitbucket-pipelines.yml
+
+# Misc
+.DS_Store
+*.log

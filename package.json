@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "name": "rag-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate": "node scripts/validate-registry.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/finmo-tech/rag-config.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/finmo-tech/rag-config/issues"
+  },
+  "homepage": "https://bitbucket.org/finmo-tech/rag-config#readme",
+  "description": ""
+}

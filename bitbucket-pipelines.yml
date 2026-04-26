@@ -1,0 +1,11 @@
+image: node:22
+
+pipelines:
+  default:
+    - step:
+        name: Validate RAG Registry
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run validate

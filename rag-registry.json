@@ -1,0 +1,21 @@
+{
+  "$schema": "./schemas/registry.schema.json",
+  "version": "1.0.0",
+  "config": {
+    "qdrant_url": "http://localhost:6333",
+    "ollama_url": "http://localhost:11434",
+    "embed_model": "nomic-embed-text",
+    "embed_dimensions": 768,
+    "qa_branch": "QA-16-03"
+  },
+  "services": [
+    {
+      "name": "reporting-engine",
+      "repo_slug": "reporting-engine",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__reporting_engine",
+      "package_json_name": "report-engine"
+    }
+  ]
+}
