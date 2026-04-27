@@ -6,16 +6,37 @@
     "ollama_url": "http://localhost:11434",
     "embed_model": "nomic-embed-text",
     "embed_dimensions": 768,
+    "default_branch": "master",
     "qa_branch": "QA-16-03"
   },
   "services": [
     {
       "name": "reporting-engine",
       "repo_slug": "reporting-engine",
+      "package_json_name": "report-engine",
       "type": "backend",
       "primary_framework": "nestjs",
       "qdrant_namespace": "qa__reporting_engine",
-      "package_json_name": "report-engine"
+      "rag": {
+        "include": [
+          "src/**/*.ts"
+        ],
+        "exclude": [
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "test/**",
+          "__tests__/**",
+          "**/*.mock.ts"
+        ],
+        "include_tests": false,
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
     }
   ]
 }
