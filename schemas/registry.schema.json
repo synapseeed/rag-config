@@ -16,7 +16,9 @@
         "qdrant_url",
         "ollama_url",
         "embed_model",
-        "qa_branch"
+        "embed_dimensions",
+        "default_branch",
+        "reranker_url"
       ],
       "properties": {
         "qdrant_url": {
@@ -27,11 +29,19 @@
           "type": "string",
           "format": "uri"
         },
+        "reranker_url": {
+          "type": "string",
+          "format": "uri"
+        },
         "embed_model": {
           "type": "string"
         },
         "embed_dimensions": {
-          "type": "number"
+          "type": "number",
+          "minimum": 1
+        },
+        "default_branch": {
+          "type": "string"
         },
         "qa_branch": {
           "type": "string"
@@ -40,23 +50,33 @@
     },
     "services": {
       "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
         "required": [
           "name",
+          "path",
           "repo_slug",
+          "package_json_name",
           "type",
-          "qdrant_namespace",
-          "package_json_name"
+          "qdrant_namespace"
         ],
         "properties": {
           "name": {
             "type": "string"
           },
+          "path": {
+            "type": "string",
+            "description": "Absolute path to the service root on disk"
+          },
           "repo_slug": {
             "type": "string"
           },
+          "package_json_name": {
+            "type": "string"
+          },
           "type": {
+            "type": "string",
             "enum": [
               "backend",
               "frontend",
@@ -64,6 +84,7 @@
             ]
           },
           "primary_framework": {
+            "type": "string",
             "enum": [
               "nestjs",
               "express",
@@ -77,8 +98,52 @@
             "type": "string",
             "pattern": "^qa__"
           },
-          "package_json_name": {
-            "type": "string"
+          "rag": {
+            "type": "object",
+            "properties": {
+              "include": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "exclude": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "include_tests": {
+                "type": "boolean"
+              },
+              "chunking": {
+                "type": "object",
+                "properties": {
+                  "strategy": {
+                    "type": "string",
+                    "enum": [
+                      "function",
+                      "file"
+                    ]
+                  },
+                  "max_tokens": {
+                    "type": "number",
+                    "minimum": 64,
+                    "maximum": 2048
+                  }
+                }
+              },
+              "embedding": {
+                "type": "object",
+                "properties": {
+                  "batch_size": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 256
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -6,12 +6,13 @@
     "ollama_url": "http://localhost:11434",
     "embed_model": "nomic-embed-text",
     "embed_dimensions": 768,
-    "default_branch": "master",
-    "qa_branch": "QA-16-03"
+    "default_branch": "QA-16-03",
+    "reranker_url": "http://localhost:8001"
   },
   "services": [
     {
       "name": "reporting-engine",
+      "path": "/Users/admin/Desktop/finmo/reporting-engine",
       "repo_slug": "reporting-engine",
       "package_json_name": "report-engine",
       "type": "backend",
@@ -19,16 +20,901 @@
       "qdrant_namespace": "qa__reporting_engine",
       "rag": {
         "include": [
-          "src/**/*.ts"
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
         ],
         "exclude": [
+          "node_modules/**",
+          "dist/**",
           "**/*.test.ts",
           "**/*.spec.ts",
+          "**/*.mock.ts",
           "test/**",
-          "__tests__/**",
-          "**/*.mock.ts"
+          "__tests__/**"
         ],
-        "include_tests": false,
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "pricing-engine-service",
+      "path": "/Users/admin/Desktop/finmo/pricing-engine-service",
+      "repo_slug": "pricing-engine-service",
+      "package_json_name": "pricing-engine-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__pricing_engine_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "organization-service",
+      "path": "/Users/admin/Desktop/finmo/organization-service",
+      "repo_slug": "organization-service",
+      "package_json_name": "organization-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__organization_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "torc-service-prod",
+      "path": "/Users/admin/Desktop/finmo/torc-service-prod",
+      "repo_slug": "torc-service-prod",
+      "package_json_name": "finmo-torc-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__torc_service_prod",
+      "rag": {
+        "include": [
+          "src/**/payin.entity.ts"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "integration-gateway",
+      "path": "/Users/admin/Desktop/finmo/integration-gateway",
+      "repo_slug": "integration-gateway",
+      "package_json_name": "integration-gateway",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__integration_gateway",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "accounting-service",
+      "path": "/Users/admin/Desktop/finmo/accounting-service",
+      "repo_slug": "accounting-service",
+      "package_json_name": "finmo-accounting-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__accounting_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "connector-orc-service",
+      "path": "/Users/admin/Desktop/finmo/connector-orc-service",
+      "repo_slug": "connector-orc-service",
+      "package_json_name": "paynow-torc-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__connector_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "client-portal-gateway",
+      "path": "/Users/admin/Desktop/finmo/client-portal-gateway",
+      "repo_slug": "client-portal-gateway",
+      "package_json_name": "client-portal-gateway-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__client_portal_gateway",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "tos-service",
+      "path": "/Users/admin/Desktop/finmo/tos-service",
+      "repo_slug": "tos-service",
+      "package_json_name": "finmo-plugin-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__tos_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "api-gateway",
+      "path": "/Users/admin/Desktop/finmo/api-gateway",
+      "repo_slug": "api-gateway",
+      "package_json_name": "api-gateway-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__api_gateway",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "backoffice-portal-gateway",
+      "path": "/Users/admin/Desktop/finmo/backoffice-portal-gateway",
+      "repo_slug": "backoffice-portal-gateway",
+      "package_json_name": "finmo-backoffice-gateway-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__backoffice_portal_gateway",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "backoffice-portal-backend",
+      "path": "/Users/admin/Desktop/finmo/backoffice-portal-backend",
+      "repo_slug": "backoffice-portal-backend",
+      "package_json_name": "finmo-backoffice-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__backoffice_portal_backend",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "notification-service",
+      "path": "/Users/admin/Desktop/finmo/notification-service",
+      "repo_slug": "notification-service",
+      "package_json_name": "notification-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__notification_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "notification-template-service",
+      "path": "/Users/admin/Desktop/finmo/notification-template-service",
+      "repo_slug": "notification-template-service",
+      "package_json_name": "email-template-service",
+      "type": "backend",
+      "primary_framework": "express",
+      "qdrant_namespace": "qa__notification_template_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "partner-service",
+      "path": "/Users/admin/Desktop/finmo/partner-service",
+      "repo_slug": "partner-service",
+      "package_json_name": "partner-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__partner_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "fix-protocol-node",
+      "path": "/Users/admin/Desktop/finmo/fix-protocol-node",
+      "repo_slug": "fix-protocol-node",
+      "package_json_name": "fix",
+      "type": "backend",
+      "primary_framework": "express",
+      "qdrant_namespace": "qa__fix_protocol_node",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "partner-portal-gateway",
+      "path": "/Users/admin/Desktop/finmo/partner-portal-gateway",
+      "repo_slug": "partner-portal-gateway",
+      "package_json_name": "partner-portal-gateway",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__partner_portal_gateway",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "reconciliation-service",
+      "path": "/Users/admin/Desktop/finmo/reconciliation-service",
+      "repo_slug": "reconciliation-service",
+      "package_json_name": "reconciliation-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__reconciliation_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "scheduler",
+      "path": "/Users/admin/Desktop/finmo/scheduler",
+      "repo_slug": "scheduler",
+      "package_json_name": "scheduler",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__scheduler_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "backoffice-portal-frontend",
+      "path": "/Users/admin/Desktop/finmo/backoffice-portal-frontend",
+      "repo_slug": "backoffice-portal-frontend",
+      "package_json_name": "finmo-portal",
+      "type": "frontend",
+      "primary_framework": "react",
+      "qdrant_namespace": "qa__backoffice_portal_frontend",
+      "rag": {
+        "include": [
+          "src/**/*.{ts,tsx,js,jsx}",
+          "package.json",
+          "Dockerfile",
+          "*.config.{js,ts}",
+          "public/index.html",
+          "**/*.{yaml,yml}"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "build/**",
+          "**/*.test.{ts,tsx}",
+          "**/*.spec.{ts,tsx}",
+          "**/*.mock.{ts,tsx}",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "client-portal-revamp",
+      "path": "/Users/admin/Desktop/finmo/client-portal-revamp",
+      "repo_slug": "client-portal-revamp",
+      "package_json_name": "finmo-portal",
+      "type": "frontend",
+      "primary_framework": "react",
+      "qdrant_namespace": "qa__client_portal_revamp",
+      "rag": {
+        "include": [
+          "src/**/*.{ts,tsx,js,jsx}",
+          "package.json",
+          "Dockerfile",
+          "*.config.{js,ts}",
+          "public/index.html",
+          "**/*.{yaml,yml}"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "build/**",
+          "**/*.test.{ts,tsx}",
+          "**/*.spec.{ts,tsx}",
+          "**/*.mock.{ts,tsx}",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "partner-portal-frontend",
+      "path": "/Users/admin/Desktop/finmo/partner-portal-frontend",
+      "repo_slug": "partner-portal-frontend",
+      "package_json_name": "partner-portal-frontend",
+      "type": "frontend",
+      "primary_framework": "react",
+      "qdrant_namespace": "qa__partner_portal_frontend",
+      "rag": {
+        "include": [
+          "src/**/*.{ts,tsx,js,jsx}",
+          "package.json",
+          "Dockerfile",
+          "*.config.{js,ts}",
+          "public/index.html",
+          "**/*.{yaml,yml}"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "build/**",
+          "**/*.test.{ts,tsx}",
+          "**/*.spec.{ts,tsx}",
+          "**/*.mock.{ts,tsx}",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "checkout-portal-revamp",
+      "path": "/Users/admin/Desktop/finmo/checkout-portal-revamp",
+      "repo_slug": "checkout-portal-revamp",
+      "package_json_name": "checkout-portal-revamp",
+      "type": "frontend",
+      "primary_framework": "react",
+      "qdrant_namespace": "qa__checkout_portal_revamp",
+      "rag": {
+        "include": [
+          "src/**/*.{ts,tsx,js,jsx}",
+          "package.json",
+          "Dockerfile",
+          "*.config.{js,ts}",
+          "public/index.html",
+          "**/*.{yaml,yml}"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "build/**",
+          "**/*.test.{ts,tsx}",
+          "**/*.spec.{ts,tsx}",
+          "**/*.mock.{ts,tsx}",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "compliance-service",
+      "path": "/Users/admin/Desktop/finmo/compliance-service",
+      "repo_slug": "compliance-service",
+      "package_json_name": "compliance-service",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__compliance_service",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    },
+    {
+      "name": "analytics-engine",
+      "path": "/Users/admin/Desktop/finmo/analytics-engine",
+      "repo_slug": "analytics-engine",
+      "package_json_name": "analytics-engine",
+      "type": "backend",
+      "primary_framework": "nestjs",
+      "qdrant_namespace": "qa__analytics_engine",
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**"
+        ],
         "chunking": {
           "strategy": "function",
           "max_tokens": 512
