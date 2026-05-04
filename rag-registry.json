@@ -61,6 +61,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -133,6 +134,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -205,6 +207,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -277,6 +280,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -349,6 +353,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -421,6 +426,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -493,6 +499,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -565,6 +572,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -637,6 +645,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -709,6 +718,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -781,6 +791,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -853,6 +864,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -925,6 +937,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -997,6 +1010,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1069,6 +1083,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1141,6 +1156,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1184,15 +1200,51 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "babel",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -1250,6 +1302,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1293,15 +1346,51 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "babel",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -1359,6 +1448,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1431,6 +1521,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1503,6 +1594,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1575,6 +1667,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1647,6 +1740,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
@@ -1719,6 +1813,7 @@
             "service-client-contract",
             "query-contract",
             "ast",
+            "babel",
             "text"
           ],
           "fallback_plugin": "text",
