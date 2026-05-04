@@ -32,15 +32,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -69,15 +104,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -106,15 +176,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -131,20 +236,62 @@
       "qdrant_namespace": "qa__torc_service_prod",
       "rag": {
         "include": [
-          "src/**/payin.entity.ts"
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
         ],
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -173,15 +320,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -210,15 +392,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -247,15 +464,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -284,15 +536,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -321,15 +608,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -358,15 +680,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -395,15 +752,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -432,15 +824,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -469,15 +896,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -506,15 +968,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -543,15 +1040,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -580,15 +1112,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -654,15 +1221,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -716,26 +1318,62 @@
       "qdrant_namespace": "qa__backoffice_portal_frontend",
       "rag": {
         "include": [
-          "src/**/*.{ts,tsx,js,jsx}",
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
           "package.json",
           "Dockerfile",
-          "*.config.{js,ts}",
-          "public/index.html",
-          "**/*.{yaml,yml}"
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
         ],
         "exclude": [
           "node_modules/**",
           "dist/**",
-          "build/**",
-          "**/*.test.{ts,tsx}",
-          "**/*.spec.{ts,tsx}",
-          "**/*.mock.{ts,tsx}",
+          "coverage/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -752,26 +1390,62 @@
       "qdrant_namespace": "qa__client_portal_revamp",
       "rag": {
         "include": [
-          "src/**/*.{ts,tsx,js,jsx}",
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
           "package.json",
           "Dockerfile",
-          "*.config.{js,ts}",
-          "public/index.html",
-          "**/*.{yaml,yml}"
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
         ],
         "exclude": [
           "node_modules/**",
           "dist/**",
-          "build/**",
-          "**/*.test.{ts,tsx}",
-          "**/*.spec.{ts,tsx}",
-          "**/*.mock.{ts,tsx}",
+          "coverage/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -788,26 +1462,62 @@
       "qdrant_namespace": "qa__partner_portal_frontend",
       "rag": {
         "include": [
-          "src/**/*.{ts,tsx,js,jsx}",
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
           "package.json",
           "Dockerfile",
-          "*.config.{js,ts}",
-          "public/index.html",
-          "**/*.{yaml,yml}"
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
         ],
         "exclude": [
           "node_modules/**",
           "dist/**",
-          "build/**",
-          "**/*.test.{ts,tsx}",
-          "**/*.spec.{ts,tsx}",
-          "**/*.mock.{ts,tsx}",
+          "coverage/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -824,26 +1534,62 @@
       "qdrant_namespace": "qa__checkout_portal_revamp",
       "rag": {
         "include": [
-          "src/**/*.{ts,tsx,js,jsx}",
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
           "package.json",
           "Dockerfile",
-          "*.config.{js,ts}",
-          "public/index.html",
-          "**/*.{yaml,yml}"
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
         ],
         "exclude": [
           "node_modules/**",
           "dist/**",
-          "build/**",
-          "**/*.test.{ts,tsx}",
-          "**/*.spec.{ts,tsx}",
-          "**/*.mock.{ts,tsx}",
+          "coverage/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -872,15 +1618,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
@@ -909,15 +1690,50 @@
         "exclude": [
           "node_modules/**",
           "dist/**",
+          "coverage/**",
           "**/*.test.ts",
           "**/*.spec.ts",
           "**/*.mock.ts",
           "test/**",
-          "__tests__/**"
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
         ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
         "chunking": {
           "strategy": "function",
-          "max_tokens": 512
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "ast",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
         },
         "embedding": {
           "batch_size": 32
