@@ -9,1881 +9,350 @@
     "default_branch": "QA-16-03",
     "reranker_url": "http://localhost:8001"
   },
+  "templates": {
+    "backend-nestjs": {
+      "rag": {
+        "include": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "src/**/*.js",
+          "package.json",
+          "Dockerfile",
+          "docker-compose*.yml",
+          "**/*.yaml",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "node_modules/**",
+          "dist/**",
+          "coverage/**",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.mock.ts",
+          "test/**",
+          "__tests__/**",
+          "**/generated/**",
+          "**/__generated__/**",
+          "**/*.snap",
+          "**/*.map"
+        ],
+        "scan": {
+          "mode": "priority",
+          "exclude_generated": true,
+          "max_file_size_kb": 512
+        },
+        "chunking": {
+          "strategy": "function",
+          "max_tokens": 512,
+          "plugins": [
+            "infra",
+            "dto-contract",
+            "entity-definition",
+            "entity-usage",
+            "api-contract",
+            "module-contract",
+            "service-client-contract",
+            "query-contract",
+            "dependency-graph",
+            "ast",
+            "babel",
+            "text"
+          ],
+          "fallback_plugin": "text",
+          "plugin_options": {
+            "entity-usage": {
+              "min_signal_count": 2,
+              "require_entity_reference": true
+            },
+            "query-contract": {
+              "min_signal_count": 2
+            },
+            "service-client-contract": {
+              "min_signal_count": 1
+            }
+          }
+        },
+        "embedding": {
+          "batch_size": 32
+        }
+      }
+    }
+  },
   "services": [
     {
       "name": "reporting-engine",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/reporting-engine",
       "repo_slug": "reporting-engine",
       "bounded_context": "reporting",
       "package_json_name": "report-engine",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__reporting_engine",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__reporting_engine"
     },
     {
       "name": "pricing-engine-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/pricing-engine-service",
       "repo_slug": "pricing-engine-service",
       "bounded_context": "pricing",
       "package_json_name": "pricing-engine-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__pricing_engine_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__pricing_engine_service"
     },
     {
       "name": "organization-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/organization-service",
       "repo_slug": "organization-service",
       "bounded_context": "organization",
       "package_json_name": "organization-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__organization_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__organization_service"
     },
     {
       "name": "torc-service-prod",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/torc-service-prod",
       "repo_slug": "torc-service-prod",
       "bounded_context": "connectivity",
       "package_json_name": "finmo-torc-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__torc_service_prod",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__torc_service_prod"
     },
     {
       "name": "integration-gateway",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/integration-gateway",
       "repo_slug": "integration-gateway",
       "bounded_context": "integration",
       "package_json_name": "integration-gateway",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__integration_gateway",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__integration_gateway"
     },
     {
       "name": "accounting-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/accounting-service",
       "repo_slug": "accounting-service",
       "bounded_context": "accounting",
       "package_json_name": "finmo-accounting-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__accounting_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__accounting_service"
     },
     {
       "name": "connector-orc-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/connector-orc-service",
       "repo_slug": "connector-orc-service",
       "bounded_context": "connectivity",
       "package_json_name": "paynow-torc-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__connector_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__connector_service"
     },
     {
       "name": "client-portal-gateway",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/client-portal-gateway",
       "repo_slug": "client-portal-gateway",
       "bounded_context": "client_portal",
       "package_json_name": "client-portal-gateway-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__client_portal_gateway",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__client_portal_gateway"
     },
     {
       "name": "tos-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/tos-service",
       "repo_slug": "tos-service",
       "bounded_context": "connectivity",
       "package_json_name": "finmo-plugin-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__tos_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__tos_service"
     },
     {
       "name": "api-gateway",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/api-gateway",
       "repo_slug": "api-gateway",
       "bounded_context": "platform_gateway",
       "package_json_name": "api-gateway-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__api_gateway",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__api_gateway"
     },
     {
       "name": "backoffice-portal-gateway",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/backoffice-portal-gateway",
       "repo_slug": "backoffice-portal-gateway",
       "bounded_context": "backoffice",
       "package_json_name": "finmo-backoffice-gateway-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__backoffice_portal_gateway",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__backoffice_portal_gateway"
     },
     {
       "name": "backoffice-portal-backend",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/backoffice-portal-backend",
       "repo_slug": "backoffice-portal-backend",
       "bounded_context": "backoffice",
       "package_json_name": "finmo-backoffice-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__backoffice_portal_backend",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__backoffice_portal_backend"
     },
     {
       "name": "notification-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/notification-service",
       "repo_slug": "notification-service",
       "bounded_context": "notifications",
       "package_json_name": "notification-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__notification_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__notification_service"
     },
     {
       "name": "notification-template-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/notification-template-service",
       "repo_slug": "notification-template-service",
       "bounded_context": "notifications",
       "package_json_name": "email-template-service",
       "type": "backend",
       "primary_framework": "express",
-      "qdrant_namespace": "qa__notification_template_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__notification_template_service"
     },
     {
       "name": "partner-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/partner-service",
       "repo_slug": "partner-service",
       "bounded_context": "partner",
       "package_json_name": "partner-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__partner_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__partner_service"
     },
     {
       "name": "fix-protocol-node",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/fix-protocol-node",
       "repo_slug": "fix-protocol-node",
       "bounded_context": "connectivity",
       "package_json_name": "fix",
       "type": "backend",
       "primary_framework": "express",
-      "qdrant_namespace": "qa__fix_protocol_node",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__fix_protocol_node"
     },
     {
       "name": "partner-portal-gateway",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/partner-portal-gateway",
       "repo_slug": "partner-portal-gateway",
       "bounded_context": "partner",
       "package_json_name": "partner-portal-gateway",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__partner_portal_gateway",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__partner_portal_gateway"
     },
     {
       "name": "reconciliation-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/reconciliation-service",
       "repo_slug": "reconciliation-service",
       "bounded_context": "reconciliation",
       "package_json_name": "reconciliation-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__reconciliation_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__reconciliation_service"
     },
     {
       "name": "scheduler",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/scheduler",
       "repo_slug": "scheduler",
       "bounded_context": "scheduler",
       "package_json_name": "scheduler",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__scheduler_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__scheduler_service"
     },
     {
       "name": "backoffice-portal-frontend",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/backoffice-portal-frontend",
       "repo_slug": "backoffice-portal-frontend",
       "bounded_context": "backoffice",
       "package_json_name": "finmo-portal",
       "type": "frontend",
       "primary_framework": "react",
-      "qdrant_namespace": "qa__backoffice_portal_frontend",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__backoffice_portal_frontend"
     },
     {
       "name": "client-portal-revamp",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/client-portal-revamp",
       "repo_slug": "client-portal-revamp",
       "bounded_context": "client_portal",
       "package_json_name": "finmo-portal",
       "type": "frontend",
       "primary_framework": "react",
-      "qdrant_namespace": "qa__client_portal_revamp",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__client_portal_revamp"
     },
     {
       "name": "partner-portal-frontend",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/partner-portal-frontend",
       "repo_slug": "partner-portal-frontend",
       "bounded_context": "partner",
       "package_json_name": "partner-portal-frontend",
       "type": "frontend",
       "primary_framework": "react",
-      "qdrant_namespace": "qa__partner_portal_frontend",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__partner_portal_frontend"
     },
     {
       "name": "checkout-portal-revamp",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/checkout-portal-revamp",
       "repo_slug": "checkout-portal-revamp",
       "bounded_context": "checkout",
       "package_json_name": "checkout-portal-revamp",
       "type": "frontend",
       "primary_framework": "react",
-      "qdrant_namespace": "qa__checkout_portal_revamp",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__checkout_portal_revamp"
     },
     {
       "name": "compliance-service",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/compliance-service",
       "repo_slug": "compliance-service",
       "bounded_context": "compliance",
       "package_json_name": "compliance-service",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__compliance_service",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__compliance_service"
     },
     {
       "name": "analytics-engine",
+      "template": "backend-nestjs",
       "path": "/Users/admin/Desktop/finmo/analytics-engine",
       "repo_slug": "analytics-engine",
       "bounded_context": "analytics",
       "package_json_name": "analytics-engine",
       "type": "backend",
       "primary_framework": "nestjs",
-      "qdrant_namespace": "qa__analytics_engine",
-      "rag": {
-        "include": [
-          "src/**/*.ts",
-          "src/**/*.tsx",
-          "src/**/*.js",
-          "package.json",
-          "Dockerfile",
-          "docker-compose*.yml",
-          "**/*.yaml",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "node_modules/**",
-          "dist/**",
-          "coverage/**",
-          "**/*.test.ts",
-          "**/*.spec.ts",
-          "**/*.mock.ts",
-          "test/**",
-          "__tests__/**",
-          "**/generated/**",
-          "**/__generated__/**",
-          "**/*.snap",
-          "**/*.map"
-        ],
-        "scan": {
-          "mode": "priority",
-          "exclude_generated": true,
-          "max_file_size_kb": 512
-        },
-        "chunking": {
-          "strategy": "function",
-          "max_tokens": 512,
-          "plugins": [
-            "infra",
-            "dto-contract",
-            "entity-definition",
-            "entity-usage",
-            "api-contract",
-            "module-contract",
-            "service-client-contract",
-            "query-contract",
-            "dependency-graph",
-            "ast",
-            "babel",
-            "text"
-          ],
-          "fallback_plugin": "text",
-          "plugin_options": {
-            "entity-usage": {
-              "min_signal_count": 2,
-              "require_entity_reference": true
-            },
-            "query-contract": {
-              "min_signal_count": 2
-            },
-            "service-client-contract": {
-              "min_signal_count": 1
-            }
-          }
-        },
-        "embedding": {
-          "batch_size": 32
-        }
-      }
+      "qdrant_namespace": "qa__analytics_engine"
     }
   ]
 }
