@@ -14,18 +14,14 @@
       "type": "object",
       "required": [
         "qdrant_url",
-        "ollama_url",
-        "embed_model",
-        "embed_dimensions",
         "default_branch",
-        "reranker_url"
+        "reranker_url",
+        "llm",
+        "embedding"
       ],
+      "additionalProperties": false,
       "properties": {
         "qdrant_url": {
-          "type": "string",
-          "format": "uri"
-        },
-        "ollama_url": {
           "type": "string",
           "format": "uri"
         },
@@ -33,18 +29,59 @@
           "type": "string",
           "format": "uri"
         },
-        "embed_model": {
-          "type": "string"
-        },
-        "embed_dimensions": {
-          "type": "number",
-          "minimum": 1
-        },
         "default_branch": {
           "type": "string"
         },
         "qa_branch": {
           "type": "string"
+        },
+        "llm": {
+          "type": "object",
+          "required": ["provider", "model", "base_url"],
+          "additionalProperties": false,
+          "properties": {
+            "provider": {
+              "type": "string",
+              "enum": ["ollama", "lmstudio", "openai", "anthropic"]
+            },
+            "model": {
+              "type": "string"
+            },
+            "base_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "api_key_env": {
+              "type": ["string", "null"],
+              "pattern": "^[A-Z][A-Z0-9_]*$"
+            }
+          }
+        },
+        "embedding": {
+          "type": "object",
+          "required": ["provider", "model", "dimensions", "base_url"],
+          "additionalProperties": false,
+          "properties": {
+            "provider": {
+              "type": "string",
+              "enum": ["ollama", "lmstudio", "openai"]
+            },
+            "model": {
+              "type": "string"
+            },
+            "dimensions": {
+              "type": "number",
+              "minimum": 1
+            },
+            "base_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "api_key_env": {
+              "type": ["string", "null"],
+              "pattern": "^[A-Z][A-Z0-9_]*$"
+            }
+          }
         }
       }
     },

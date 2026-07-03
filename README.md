@@ -28,10 +28,13 @@ The registry is divided into three primary sections:
 Defines the infrastructure endpoints and model parameters:
 
 - **`qdrant_url`**: Endpoint for the Vector Database.
-- **`ollama_url`**: Endpoint for the LLM/Embedding engine.
-- **`embed_model`**: The model used for generating vector representations (e.g., `nomic-embed-text`).
-- **`embed_dimensions`**: Vector size (e.g., `768`). Must match the model's output.
 - **`reranker_url`**: Endpoint for the cross-encoder reranking service.
+- **`llm`**: `{ provider, model, base_url, api_key_env }` — the generation model. `provider` is one of `ollama` | `lmstudio` | `openai` | `anthropic`.
+- **`embedding`**: `{ provider, model, dimensions, base_url, api_key_env }` — the embedding model. `provider` is one of `ollama` | `lmstudio` | `openai` (no `anthropic` — it has no embeddings API). `dimensions` must match the model's actual output size or Qdrant collection creation fails.
+
+`llm` and `embedding` are independent — e.g. you can embed locally via `lmstudio` while generating via `anthropic`.
+
+**Never put a literal API key in `api_key_env`** — it names an environment variable (e.g. `"OPENAI_API_KEY"`), not the key itself. `rag-registry.json` is committed to git; `npm run validate` scans the whole file for anything that looks like a literal secret and fails the build if it finds one.
 
 ### 2. Templates (`templates`)
 
@@ -69,7 +72,9 @@ The validator enforces the following:
 
 - ✅ **Uniqueness**: Service names, Qdrant namespaces, and package names must be unique.
 - ✅ **Path Integrity**: Service paths must be absolute and exist on the local filesystem.
-- ✅ **Mandatory Fields**: Global config must include `embed_dimensions` and `reranker_url`.
+- ✅ **Mandatory Fields**: Global config must include `llm`, `embedding`, and `reranker_url`.
+- ✅ **No embeddings on Anthropic**: `embedding.provider` cannot be `"anthropic"`.
+- ✅ **No leaked secrets**: every string value in the file is checked against common API-key patterns (OpenAI/Anthropic-style prefixes, long hex/base64 tokens).
 
 ## 🚀 Adding a New Service
 

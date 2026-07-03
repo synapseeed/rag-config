@@ -83,10 +83,10 @@ function semanticChecks(registry) {
       );
     }
 
-    // embed_dimensions must be set (easy to forget, causes silent failures)
-    if (!registry.config.embed_dimensions) {
+    // embedding.dimensions must be set (easy to forget, causes silent failures)
+    if (!registry.config.embedding || !registry.config.embedding.dimensions) {
       errors.push(
-        `config.embed_dimensions is missing — required for Qdrant collection creation`
+        `config.embedding.dimensions is missing — required for Qdrant collection creation`
       );
     }
 
@@ -94,6 +94,13 @@ function semanticChecks(registry) {
     if (!registry.config.reranker_url) {
       errors.push(
         `config.reranker_url is missing — required by search and ask commands`
+      );
+    }
+
+    // embedding provider must not be anthropic (no embeddings API)
+    if (registry.config.embedding && registry.config.embedding.provider === "anthropic") {
+      errors.push(
+        `config.embedding.provider cannot be "anthropic" — Anthropic has no embeddings API. Use "ollama", "lmstudio", or "openai".`
       );
     }
   });
@@ -105,10 +112,61 @@ function semanticChecks(registry) {
   }
 }
 
+// ─── Secret-leak check ────────────────────────────────────────────────────────
+// rag-registry.json is committed to git and reviewed in PRs. Config must only
+// ever reference an *env var name* (config.llm.api_key_env / config.embedding.api_key_env),
+// never a literal API key. This walks every string value in the file, not just
+// the api_key_env fields, in case a key gets pasted into model/base_url by mistake.
+
+const SECRET_PATTERNS = [
+  /^sk-ant-[A-Za-z0-9_-]{20,}$/, // Anthropic-style
+  /^sk-[A-Za-z0-9_-]{20,}$/, // OpenAI-style
+  /^[A-Fa-f0-9]{32,}$/, // long hex token
+  /^[A-Za-z0-9+/]{40,}={0,2}$/, // long base64 token
+];
+
+function looksLikeSecret(value: unknown): boolean {
+  return typeof value === "string" && SECRET_PATTERNS.some((re) => re.test(value.trim()));
+}
+
+function secretLeakCheck(registry: any) {
+  const errors: string[] = [];
+
+  function walk(node: any, pathStr: string) {
+    if (node === null || node === undefined) return;
+    if (typeof node === "string") {
+      if (looksLikeSecret(node)) {
+        errors.push(
+          `Value at ${pathStr} looks like a literal secret, not an env var name. ` +
+            `rag-registry.json must never contain literal API keys — use config.llm.api_key_env / ` +
+            `config.embedding.api_key_env to name an env var instead.`
+        );
+      }
+      return;
+    }
+    if (Array.isArray(node)) {
+      node.forEach((item, i) => walk(item, `${pathStr}[${i}]`));
+      return;
+    }
+    if (typeof node === "object") {
+      Object.entries(node).forEach(([key, value]) => walk(value, `${pathStr}.${key}`));
+    }
+  }
+
+  walk(registry, "$");
+
+  if (errors.length > 0) {
+    console.error("❌ Secret-leak check failed:\n");
+    errors.forEach((e) => console.error(`  • ${e}`));
+    process.exit(1);
+  }
+}
+
 // ─── Run ──────────────────────────────────────────────────────────────────────
 
 const registry = validate();
 semanticChecks(registry);
+secretLeakCheck(registry);
 console.log(
   `✅ rag-registry.json is valid (${registry.services.length} service(s))`
 );
